@@ -1,16 +1,26 @@
-# React + Vite
+# Nimble Gravity React Challenge
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A frontend mini-application developed in React to manage job applications. This project was built as a solution to a technical challenge, focusing on code quality, user experience (UX), and robust HTTP request handling.
 
-Currently, two official plugins are available:
+## 📋 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Candidate Search:** Allows the user to enter their email to retrieve their information (UUID and Candidate ID).
+- **Job Listings:** Dynamically fetches and renders open positions from the API.
+- **Agile Application:** Each job offer features an independent form to submit the GitHub repository URL.
+- **State Management:** Clear visual feedback for the user during `loading`, success, and error states.
+- **Validations:** Basic validation for valid GitHub URLs before submitting the request.
 
-## React Compiler
+## 🛠️ Technologies Used
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- **React:** Core library for building the UI.
+- **Vite + SWC:** Ultra-fast development environment and bundler.
+- **JavaScript (ES6+):** Application logic and promise handling (async/await).
+- **Pure CSS:** Clean and responsive styles without external dependencies.
 
-## Expanding the ESLint configuration
+## 🏗️ Architecture & Technical Decisions
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+To adhere to best practices and SOLID principles, the project was structured as follows:
+
+1. **Single Responsibility Principle (SRP):** Network logic and `fetch` requests are isolated in `src/services/api.js`. React components don't know how data is fetched; they only consume it.
+2. **Componentization:** The `JobItem.jsx` component was created to encapsulate the logic of each individual application. This ensures that if one request fails, the error is handled locally without affecting the rest of the job list.
+3. **Error Handling:** Implementation of `try/catch` blocks for both global network errors (e.g., API down) and local application errors, always providing clear feedback to the user on the interface.
